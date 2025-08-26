@@ -30,6 +30,7 @@ export default tseslint.config(
          "@typescript-eslint/no-floating-promises": "off",
          "@typescript-eslint/no-unsafe-argument": "warn",
          "prettier/prettier": "off",
+         "@typescript-eslint/restrict-template-expressions": "off",
       },
    }
 )

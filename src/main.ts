@@ -7,17 +7,13 @@ import { ValidationPipe } from "@nestjs/common"
 import * as session from "express-session"
 import { ms, StringValue } from "./libs/common/utils/ms.util"
 import { parseBoolean } from "./libs/common/utils/parse-boolean.util"
-import { RedisStore } from "connect-redis"
+import RedisStore from "connect-redis"
 
 async function bootstrap() {
    const app = await NestFactory.create(AppModule)
 
    const config = app.get(ConfigService)
-   const redis = new IORedis({
-      host: config.getOrThrow("REDIS_HOST"),
-      port: config.getOrThrow("REDIS_PORT"),
-      password: config.getOrThrow("REDIS_PASSWORD"),
-   })
+   const redis = new IORedis(config.getOrThrow("REDIS_URI"))
 
    app.use(cookieParser(config.getOrThrow<string>("COOKIES_SECRET")))
 
@@ -48,10 +44,10 @@ async function bootstrap() {
    app.enableCors({
       origin: config.getOrThrow<string>("ALLOWED_ORIGIN"),
       credentials: true,
-      exposedHeaders: ["Set-Cookie"],
+      exposedHeaders: ["set-cookie"],
    })
 
-   await app.listen(config.getOrThrow<number>("APPLICATION_PORT") ?? 3000)
+   await app.listen(config.getOrThrow<number>("APPLICATION_PORT") ?? 4000)
 }
 
 bootstrap()

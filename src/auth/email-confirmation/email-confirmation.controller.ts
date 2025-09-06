@@ -6,9 +6,10 @@ import {
    Post,
    Req,
 } from "@nestjs/common"
-import { EmailConfirmationService } from "./email-confirmation.service"
 import { Request } from "express"
+
 import { ConfirmationDto } from "./dto/confirmation.dto"
+import { EmailConfirmationService } from "./email-confirmation.service"
 
 @Controller("auth/email-confirmation")
 export class EmailConfirmationController {

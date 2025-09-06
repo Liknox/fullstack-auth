@@ -5,16 +5,17 @@ import {
    NotFoundException,
    UnauthorizedException,
 } from "@nestjs/common"
-import { RegisterDto } from "./dto/register.dto"
-import { UserService } from "@/user/user.service"
-import { AuthMethod, User } from "@prisma/__generated__"
-import { Request, Response } from "express"
-import { LoginDto } from "./dto/login.dto"
-import { verify } from "argon2"
 import { ConfigService } from "@nestjs/config"
+import { AuthMethod, User } from "@prisma/__generated__"
+import { verify } from "argon2"
+import { Request, Response } from "express"
+
+import { LoginDto } from "./dto/login.dto"
+import { RegisterDto } from "./dto/register.dto"
+import { EmailConfirmationService } from "./email-confirmation/email-confirmation.service"
 import { ProviderService } from "./provider/provider.service"
 import { PrismaService } from "@/prisma/prisma.service"
-import { EmailConfirmationService } from "./email-confirmation/email-confirmation.service"
+import { UserService } from "@/user/user.service"
 
 @Injectable()
 export class AuthService {

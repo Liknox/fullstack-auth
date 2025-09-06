@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
+
 import { TypeBaseProviderOptions } from "./types/base-provider.options.types"
 import { TypeUserInfo } from "./types/user-info.types"
 

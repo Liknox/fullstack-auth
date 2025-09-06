@@ -1,4 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from "@nestjs/common"
+
 import { ProviderOptionsSymbol, TypeOptions } from "./provider.constants"
 import { BaseOAuthService } from "./services/base-oauth.service"
 

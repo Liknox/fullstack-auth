@@ -2,7 +2,9 @@ import { MailerService } from "@nestjs-modules/mailer"
 import { Injectable } from "@nestjs/common"
 import { ConfigService } from "@nestjs/config"
 import { render } from "@react-email/components"
+
 import ConfirmationTemplate from "./templates/confirmation.template"
+import ResetPasswordTemplate from "./templates/reset-password"
 
 @Injectable()
 export class MailService {

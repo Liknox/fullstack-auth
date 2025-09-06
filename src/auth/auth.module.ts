@@ -1,15 +1,16 @@
-import { forwardRef, Logger, Module } from "@nestjs/common"
-import { AuthService } from "./auth.service"
-import { AuthController } from "./auth.controller"
-import { UserService } from "@/user/user.service"
-
-import { GoogleRecaptchaModule } from "@nestlab/google-recaptcha"
-import { recaptchaConfig } from "@/config/recaptcha.config"
-import { ProviderModule } from "./provider/provider.module"
+import { Logger, Module, forwardRef } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
+import { GoogleRecaptchaModule } from "@nestlab/google-recaptcha"
+
 import { getProvidersConfig } from "@/config/providers.config"
+import { recaptchaConfig } from "@/config/recaptcha.config"
+
+import { AuthController } from "./auth.controller"
+import { AuthService } from "./auth.service"
 import { EmailConfirmationModule } from "./email-confirmation/email-confirmation.module"
+import { ProviderModule } from "./provider/provider.module"
 import { MailService } from "@/libs/mail/mail.service"
+import { UserService } from "@/user/user.service"
 
 @Module({
    imports: [

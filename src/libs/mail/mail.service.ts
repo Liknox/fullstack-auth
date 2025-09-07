@@ -20,6 +20,13 @@ export class MailService {
       return this.sendMail(email, "Email Confirmation", html)
    }
 
+   public async sendPasswordResetEmail(email: string, token: string) {
+      const domain = this.configService.getOrThrow<string>("ALLOWED_ORIGIN")
+      const html = await render(ResetPasswordTemplate({ domain, token }))
+
+      return this.sendMail(email, "Reset Password", html)
+   }
+
    private sendMail(email: string, subject: string, html: string) {
       return this.mailerService.sendMail({
          to: email,

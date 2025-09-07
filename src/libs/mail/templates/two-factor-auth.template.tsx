@@ -11,7 +11,7 @@ export function TwoFactorAuthTemplate({ token }: TwoFactorAuthTemplateProps) {
 		<Tailwind>
 			<Html>
 				<Body className='text-black'>
-					<Heading>Two-factor Authentication</Heading>
+					<Heading>Two-Factor Authentication</Heading>
 					<Text>Your 2FA code<strong>{token}</strong></Text>
 					<Text>
 						Please, type this code in app to finish authentication process.

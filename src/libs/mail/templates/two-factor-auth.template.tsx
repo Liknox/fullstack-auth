@@ -12,7 +12,7 @@ export function TwoFactorAuthTemplate({ token }: TwoFactorAuthTemplateProps) {
 			<Html>
 				<Body className='text-black'>
 					<Heading>Two-Factor Authentication</Heading>
-					<Text>Your 2FA code<strong>{token}</strong></Text>
+					<Text>Your 2FA code: <strong>{token}</strong></Text>
 					<Text>
 						Please, type this code in app to finish authentication process.
 					</Text>

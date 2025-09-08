@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common"
+import {
+   BadRequestException,
+   Injectable,
+   NotFoundException,
+} from "@nestjs/common"
 import { TokenType } from "@prisma/__generated__"
 import { hash } from "argon2"
 import { v4 as uuidv4 } from "uuid"
@@ -51,7 +55,7 @@ export class PasswordRecoveryService {
       const hasExpired = new Date(existingToken.expiresIn) < new Date()
 
       if (hasExpired) {
-         throw new NotFoundException(
+         throw new BadRequestException(
             "Token has expired. Please request a new one."
          )
       }

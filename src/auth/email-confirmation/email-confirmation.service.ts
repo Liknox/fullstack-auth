@@ -1,4 +1,5 @@
 import {
+   BadRequestException,
    Inject,
    Injectable,
    NotFoundException,
@@ -50,7 +51,9 @@ export class EmailConfirmationService {
       )
 
       if (!existingUser) {
-         throw new NotFoundException("User not found. Check your credentials.")
+         throw new BadRequestException(
+            "User not found. Check your credentials."
+         )
       }
 
       await this.prismaService.user.update({
@@ -72,8 +75,8 @@ export class EmailConfirmationService {
       return this.authService.saveSession(req, existingUser)
    }
 
-   public async sendVerificationToken(user: User) {
-      const verificationToken = await this.generateVerificationToken(user.email)
+   public async sendVerificationToken(email: string) {
+      const verificationToken = await this.generateVerificationToken(email)
 
       await this.mailService.sendConfirmationEmail(
          verificationToken.email,

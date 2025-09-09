@@ -1,4 +1,9 @@
 import { Metadata } from "next"
+import { Inter } from "next/font/google"
+
+import { MainProvider } from "@/shared/providers"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
    title: {
@@ -14,7 +19,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
    return (
       <html lang="en">
-         <body>{children}</body>
+         <body className={inter.className}>
+            <MainProvider>{children}</MainProvider>
+         </body>
       </html>
    )
 }

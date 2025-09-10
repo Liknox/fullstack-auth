@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
 
+import { ToggleTheme } from "@/shared/components/ui"
 import { MainProvider } from "@/shared/providers"
 import "@/shared/styles/globals.css"
 
@@ -25,7 +26,7 @@ export default function RootLayout({
          <body className={inter.className}>
             <MainProvider>
                <div className="relative flex min-h-screen flex-col">
-                  {/* ThemeToggle */}
+                  <ToggleTheme />
                   <div className="flex h-screen w-full items-center justify-center px-4">
                      {children}
                   </div>

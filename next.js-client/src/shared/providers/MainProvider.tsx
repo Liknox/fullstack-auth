@@ -3,7 +3,12 @@
 import { PropsWithChildren } from "react"
 
 import { TanstackQueryProvider } from "./TanstackQueryProvider"
+import { ThemeProvider } from "./ThemeProvider"
 
 export function MainProvider({ children }: PropsWithChildren<unknown>) {
-   return <TanstackQueryProvider>{children}</TanstackQueryProvider>
+   return (
+      <TanstackQueryProvider>
+         <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>{children}</ThemeProvider>
+      </TanstackQueryProvider>
+   )
 }

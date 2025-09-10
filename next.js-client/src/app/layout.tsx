@@ -23,7 +23,14 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={inter.className}>
-            <MainProvider>{children}</MainProvider>
+            <MainProvider>
+               <div className="relative flex min-h-screen flex-col">
+                  {/* ThemeToggle */}
+                  <div className="flex h-screen w-full items-center justify-center px-4">
+                     {children}
+                  </div>
+               </div>
+            </MainProvider>
          </body>
       </html>
    )

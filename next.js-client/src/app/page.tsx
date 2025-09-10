@@ -1,3 +1,14 @@
+import Link from "next/link"
+
+import { buttonVariants } from "@/shared/components/ui/button"
+
 export default function Home() {
-   return <div>Home Page</div>
+   return (
+      <div className="space-y-5 text-center">
+         <h1 className="text-4xl font-bold">Main Page</h1>
+         <Link href="/auth/login" className={buttonVariants()}>
+            Sign in
+         </Link>
+      </div>
+   )
 }

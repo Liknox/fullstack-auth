@@ -1,1 +1,11 @@
-npm test
+# .husky/pre-commit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Running Prettier check..."
+npm run format:check
+
+if [ $? -ne 0 ]; then
+   echo "⛔ Commit aborted. Run: npm run format to fix formatting."
+   exit 1
+fi

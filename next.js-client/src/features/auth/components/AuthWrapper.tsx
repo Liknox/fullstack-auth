@@ -30,7 +30,7 @@ export function AuthWrapper({
    return (
       <Card className="w-[400px]">
          <CardHeader className="space-y-2">
-            <CardTitle>{heading}</CardTitle>
+            <CardTitle className="text-2xl">{heading}</CardTitle>
             {description && <CardDescription>{description}</CardDescription>}
          </CardHeader>
          <CardContent>

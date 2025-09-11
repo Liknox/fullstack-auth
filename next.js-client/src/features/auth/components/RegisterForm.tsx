@@ -1,6 +1,9 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTheme } from "next-themes"
+import { useState } from "react"
+import ReCAPTCHA from "react-google-recaptcha"
 import { useForm } from "react-hook-form"
 
 import {
@@ -19,6 +22,9 @@ import { RegisterSchema, TypeRegisterSchema } from "../schemas"
 import { AuthWrapper } from "./AuthWrapper"
 
 export function RegisterForm() {
+   const { theme } = useTheme()
+   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+
    const form = useForm<TypeRegisterSchema>({
       resolver: zodResolver(RegisterSchema),
       defaultValues: {
@@ -30,7 +36,11 @@ export function RegisterForm() {
    })
 
    const onSubmit = (values: TypeRegisterSchema) => {
-      console.log(values)
+      if (recaptchaValue) {
+         console.log(values)
+      } else {
+         console.log("ReCAPTCHA not verified")
+      }
    }
 
    return (
@@ -108,6 +118,13 @@ export function RegisterForm() {
                      </FormItem>
                   )}
                />
+               <div className="flex justify-center">
+                  <ReCAPTCHA
+                     sitekey={process.env.GOOGLE_RECAPTCHA_SITE_KEY as string}
+                     onChange={setRecaptchaValue}
+                     theme={theme === "light" ? "light" : "dark"}
+                  />
+               </div>
                <Button type="submit">Create account</Button>
             </form>
          </Form>

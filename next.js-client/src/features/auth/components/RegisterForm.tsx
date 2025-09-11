@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 import { useState } from "react"
 import ReCAPTCHA from "react-google-recaptcha"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 import {
    Button,
@@ -39,7 +40,7 @@ export function RegisterForm() {
       if (recaptchaValue) {
          console.log(values)
       } else {
-         console.log("ReCAPTCHA not verified")
+         toast.error("Please, verify reCAPTCHA!")
       }
    }
 

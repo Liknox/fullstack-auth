@@ -1,16 +1,39 @@
+"use client"
+
+import { useMutation } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
 import { FaGithub, FaGoogle } from "react-icons/fa"
 
 import { Button } from "@/shared/components/ui"
 
+import { authService } from "../services"
+import { ProvidersType } from "../types"
+
 export function AutSocial() {
+   const router = useRouter()
+
+   const { mutateAsync } = useMutation({
+      mutationKey: ["oauth by provider"],
+      mutationFn: async (provider: ProvidersType) =>
+         await authService.oauthByProvider(provider)
+   })
+
+   const onClick = async (provider: ProvidersType) => {
+      const response = await mutateAsync(provider)
+
+      if (response) {
+         router.push(response.url)
+      }
+   }
+
    return (
       <>
          <div className="grid grid-cols-1 gap-6">
-            <Button variant="outline">
+            <Button onClick={() => onClick("google")} variant="outline">
                <FaGoogle className="mr-2 size-4" />
                Google
             </Button>
-            {/* <Button variant="outline">
+            {/* <Button onClick={() => onClick("github")} variant="outline">
                <FaGithub className="mr-2 size-4" />
                Github
             </Button> */}

@@ -1,7 +1,7 @@
 import { api } from "@/shared/api"
 
 import { TypeLoginSchema, TypeRegisterSchema } from "../schemas"
-import { IUser } from "../types"
+import { IUser, ProvidersType } from "../types"
 
 class AuthService {
    public async register(body: TypeRegisterSchema, recaptcha?: string) {
@@ -16,6 +16,14 @@ class AuthService {
       const headers = recaptcha ? { recaptcha } : undefined
 
       const response = await api.post<IUser>("auth/login", body, { headers })
+
+      return response
+   }
+
+   public async oauthByProvider(provider: ProvidersType) {
+      const response = await api.get<{ url: string }>(
+         `auth/oauth/connect/${provider}`
+      )
 
       return response
    }

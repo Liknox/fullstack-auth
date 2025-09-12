@@ -18,6 +18,7 @@ import {
    Input
 } from "@/shared/components/ui"
 
+import { useRegisterMutation } from "../hooks"
 import { RegisterSchema, TypeRegisterSchema } from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
@@ -36,9 +37,11 @@ export function RegisterForm() {
       }
    })
 
+   const { register, isLoadingRegister } = useRegisterMutation()
+
    const onSubmit = (values: TypeRegisterSchema) => {
       if (recaptchaValue) {
-         console.log(values)
+         register({ values, recaptcha: recaptchaValue })
       } else {
          toast.error("Please, verify reCAPTCHA!")
       }
@@ -62,7 +65,11 @@ export function RegisterForm() {
                      <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                           <Input placeholder="John" {...field} />
+                           <Input
+                              placeholder="John"
+                              disabled={isLoadingRegister}
+                              {...field}
+                           />
                         </FormControl>
                         <FormMessage />
                      </FormItem>
@@ -77,6 +84,7 @@ export function RegisterForm() {
                         <FormControl>
                            <Input
                               placeholder="john@example.com"
+                              disabled={isLoadingRegister}
                               type="email"
                               {...field}
                            />
@@ -94,6 +102,7 @@ export function RegisterForm() {
                         <FormControl>
                            <Input
                               placeholder="******"
+                              disabled={isLoadingRegister}
                               type="password"
                               {...field}
                            />
@@ -111,6 +120,7 @@ export function RegisterForm() {
                         <FormControl>
                            <Input
                               placeholder="******"
+                              disabled={isLoadingRegister}
                               type="password"
                               {...field}
                            />
@@ -126,7 +136,9 @@ export function RegisterForm() {
                      theme={theme === "light" ? "light" : "dark"}
                   />
                </div>
-               <Button type="submit">Create account</Button>
+               <Button type="submit" disabled={isLoadingRegister}>
+                  Create account
+               </Button>
             </form>
          </Form>
       </AuthWrapper>

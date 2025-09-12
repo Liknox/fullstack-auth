@@ -73,7 +73,7 @@ export class AuthService {
       if (!user.isVerified) {
          await this.emailConfirmationService.sendVerificationToken(user.email)
          throw new UnauthorizedException(
-            "Your email isn't verified. Please, check your email and confirm email."
+            "Your email isn't verified. Please, check your email and confirm."
          )
       }
 

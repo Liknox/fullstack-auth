@@ -1,9 +1,6 @@
 import { z } from "zod"
 
 export const LoginSchema = z.object({
-   name: z.string().min(1, {
-      error: "Type name"
-   }),
    email: z.email({
       error: "Invalid email"
    }),

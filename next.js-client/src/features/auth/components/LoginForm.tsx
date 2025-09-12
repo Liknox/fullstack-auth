@@ -29,7 +29,6 @@ export function LoginForm() {
    const form = useForm<TypeLoginSchema>({
       resolver: zodResolver(LoginSchema),
       defaultValues: {
-         name: "",
          email: "",
          password: ""
       }
@@ -54,19 +53,6 @@ export function LoginForm() {
             <form
                onSubmit={form.handleSubmit(onSubmit)}
                className="grid gap-2 space-y-2">
-               <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                     <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                           <Input placeholder="John" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
-               />
                <FormField
                   control={form.control}
                   name="email"

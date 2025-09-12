@@ -18,6 +18,7 @@ import {
    Input
 } from "@/shared/components/ui"
 
+import { useLoginMutation } from "../hooks"
 import { LoginSchema, TypeLoginSchema } from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
@@ -34,9 +35,11 @@ export function LoginForm() {
       }
    })
 
+   const { login, isLoadingLogin } = useLoginMutation()
+
    const onSubmit = (values: TypeLoginSchema) => {
       if (recaptchaValue) {
-         console.log(values)
+         login({ values, recaptcha: recaptchaValue })
       } else {
          toast.error("Please, verify reCAPTCHA!")
       }
@@ -62,6 +65,7 @@ export function LoginForm() {
                         <FormControl>
                            <Input
                               placeholder="john@example.com"
+                              disabled={isLoadingLogin}
                               type="email"
                               {...field}
                            />
@@ -79,6 +83,7 @@ export function LoginForm() {
                         <FormControl>
                            <Input
                               placeholder="******"
+                              disabled={isLoadingLogin}
                               type="password"
                               {...field}
                            />
@@ -94,7 +99,9 @@ export function LoginForm() {
                      theme={theme === "light" ? "light" : "dark"}
                   />
                </div>
-               <Button type="submit">Log in account</Button>
+               <Button type="submit" disabled={isLoadingLogin}>
+                  Log in account
+               </Button>
             </form>
          </Form>
       </AuthWrapper>

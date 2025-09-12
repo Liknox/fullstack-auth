@@ -4,7 +4,7 @@ import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import { TypeLoginSchema } from "../schemas"
+import type { TypeLoginSchema } from "../schemas"
 import { authService } from "../services"
 
 export function useLoginMutation() {

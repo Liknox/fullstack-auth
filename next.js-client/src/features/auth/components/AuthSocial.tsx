@@ -7,7 +7,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa"
 import { Button } from "@/shared/components/ui"
 
 import { authService } from "../services"
-import { ProvidersType } from "../types"
+import type { ProvidersType } from "../types"
 
 export function AutSocial() {
    const router = useRouter()

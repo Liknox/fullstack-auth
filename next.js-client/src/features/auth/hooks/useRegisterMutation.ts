@@ -1,9 +1,8 @@
 import { useMutation } from "@tanstack/react-query"
-import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import { TypeRegisterSchema } from "../schemas"
+import type { TypeRegisterSchema } from "../schemas"
 import { authService } from "../services"
 
 export function useRegisterMutation() {

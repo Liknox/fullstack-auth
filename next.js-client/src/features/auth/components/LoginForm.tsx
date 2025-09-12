@@ -19,7 +19,7 @@ import {
 } from "@/shared/components/ui"
 
 import { useLoginMutation } from "../hooks"
-import { LoginSchema, TypeLoginSchema } from "../schemas"
+import { LoginSchema, type TypeLoginSchema } from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
 

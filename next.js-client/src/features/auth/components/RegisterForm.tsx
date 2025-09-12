@@ -19,7 +19,7 @@ import {
 } from "@/shared/components/ui"
 
 import { useRegisterMutation } from "../hooks"
-import { RegisterSchema, TypeRegisterSchema } from "../schemas"
+import { RegisterSchema, type TypeRegisterSchema } from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
 

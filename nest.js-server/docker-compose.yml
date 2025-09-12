@@ -31,6 +31,24 @@ services:
     networks:
       - backend
 
+  app:
+    container_name: nestjs_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "${APP_PORT:-4000}:4000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - backend
+    command: npm run start:dev
+
 volumes: 
   postgres_data: 
   redis_data: 

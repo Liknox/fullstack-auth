@@ -23,7 +23,7 @@ export function useLoginMutation() {
          if (data.message) {
             toastMessageHandler(data)
          } else {
-            toast.success("Successful login")
+            toast.success("Successful Login")
             router.push("/dashboard/settings")
          }
       },

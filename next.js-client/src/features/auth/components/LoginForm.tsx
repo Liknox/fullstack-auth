@@ -27,6 +27,7 @@ import { AuthWrapper } from "./AuthWrapper"
 export function LoginForm() {
    const { theme } = useTheme()
    const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+   const [isShowTwoFactor, setIsShowTwoFactor] = useState<boolean>(false)
 
    const form = useForm<TypeLoginSchema>({
       resolver: zodResolver(LoginSchema),
@@ -36,7 +37,7 @@ export function LoginForm() {
       }
    })
 
-   const { login, isLoadingLogin } = useLoginMutation()
+   const { login, isLoadingLogin } = useLoginMutation(setIsShowTwoFactor)
 
    const onSubmit = (values: TypeLoginSchema) => {
       if (recaptchaValue) {
@@ -57,49 +58,74 @@ export function LoginForm() {
             <form
                onSubmit={form.handleSubmit(onSubmit)}
                className="grid gap-2 space-y-2">
-               <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                     <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                           <Input
-                              placeholder="john@example.com"
-                              disabled={isLoadingLogin}
-                              type="email"
-                              {...field}
-                           />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
-               />
-               <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                     <FormItem>
-                        <div className="flex items-center justify-between">
-                           <FormLabel>Password</FormLabel>
-                           <Link
-                              href="/auth/reset-password"
-                              className="ml-auto inline-block text-sm underline">
-                              Forgot password?
-                           </Link>
-                        </div>
-                        <FormControl>
-                           <Input
-                              placeholder="******"
-                              disabled={isLoadingLogin}
-                              type="password"
-                              {...field}
-                           />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
-               />
+               {isShowTwoFactor && (
+                  <>
+                     <FormField
+                        control={form.control}
+                        name="code"
+                        render={({ field }) => (
+                           <FormItem>
+                              <FormLabel>Code</FormLabel>
+                              <FormControl>
+                                 <Input
+                                    placeholder="123456"
+                                    disabled={isLoadingLogin}
+                                    {...field}
+                                 />
+                              </FormControl>
+                              <FormMessage />
+                           </FormItem>
+                        )}
+                     />
+                  </>
+               )}
+               {!isShowTwoFactor && (
+                  <>
+                     <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                           <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                 <Input
+                                    placeholder="john@example.com"
+                                    disabled={isLoadingLogin}
+                                    type="email"
+                                    {...field}
+                                 />
+                              </FormControl>
+                              <FormMessage />
+                           </FormItem>
+                        )}
+                     />
+                     <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                           <FormItem>
+                              <div className="flex items-center justify-between">
+                                 <FormLabel>Password</FormLabel>
+                                 <Link
+                                    href="/auth/reset-password"
+                                    className="ml-auto inline-block text-sm underline">
+                                    Forgot password?
+                                 </Link>
+                              </div>
+                              <FormControl>
+                                 <Input
+                                    placeholder="******"
+                                    disabled={isLoadingLogin}
+                                    type="password"
+                                    {...field}
+                                 />
+                              </FormControl>
+                              <FormMessage />
+                           </FormItem>
+                        )}
+                     />
+                  </>
+               )}
                <div className="flex justify-center">
                   <ReCAPTCHA
                      sitekey={process.env.GOOGLE_RECAPTCHA_SITE_KEY as string}

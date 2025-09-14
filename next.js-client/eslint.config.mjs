@@ -35,6 +35,7 @@ const eslintConfig = [
          "@typescript-eslint/no-unsafe-return": "off",
          "@typescript-eslint/require-await": "off",
          "@typescript-eslint/no-require-imports": "off",
+         "react-hooks/exhaustive-deps": "off",
          "prefer-const": "off"
       }
    }

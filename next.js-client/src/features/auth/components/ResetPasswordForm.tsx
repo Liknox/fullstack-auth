@@ -18,13 +18,8 @@ import {
    Input
 } from "@/shared/components/ui"
 
-import { useLoginMutation, useResetPasswordMutation } from "../hooks"
-import {
-   LoginSchema,
-   ResetPasswordSchema,
-   type TypeLoginSchema,
-   TypeResetPasswordSchema
-} from "../schemas"
+import { useResetPasswordMutation } from "../hooks"
+import { ResetPasswordSchema, type TypeResetPasswordSchema } from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
 

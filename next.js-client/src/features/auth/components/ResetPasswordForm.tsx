@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTheme } from "next-themes"
-import Link from "next/link"
 import { useState } from "react"
 import ReCAPTCHA from "react-google-recaptcha"
 import { useForm } from "react-hook-form"
@@ -19,28 +18,32 @@ import {
    Input
 } from "@/shared/components/ui"
 
-import { useLoginMutation } from "../hooks"
-import { LoginSchema, type TypeLoginSchema } from "../schemas"
+import { useLoginMutation, useResetPasswordMutation } from "../hooks"
+import {
+   LoginSchema,
+   ResetPasswordSchema,
+   type TypeLoginSchema,
+   TypeResetPasswordSchema
+} from "../schemas"
 
 import { AuthWrapper } from "./AuthWrapper"
 
-export function LoginForm() {
+export function ResetPasswordForm() {
    const { theme } = useTheme()
    const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
 
-   const form = useForm<TypeLoginSchema>({
-      resolver: zodResolver(LoginSchema),
+   const form = useForm<TypeResetPasswordSchema>({
+      resolver: zodResolver(ResetPasswordSchema),
       defaultValues: {
-         email: "",
-         password: ""
+         email: ""
       }
    })
 
-   const { login, isLoadingLogin } = useLoginMutation()
+   const { reset, isLoadingReset } = useResetPasswordMutation()
 
-   const onSubmit = (values: TypeLoginSchema) => {
+   const onSubmit = (values: TypeResetPasswordSchema) => {
       if (recaptchaValue) {
-         login({ values, recaptcha: recaptchaValue })
+         reset({ values, recaptcha: recaptchaValue })
       } else {
          toast.error("Please, verify reCAPTCHA!")
       }
@@ -48,11 +51,10 @@ export function LoginForm() {
 
    return (
       <AuthWrapper
-         heading="Login"
-         description="To log in to the website enter your email and password."
-         backButtonLabel="Don't have an account? Sign up"
-         backButtonHref="/auth/register"
-         isShowSocial>
+         heading="Reset Password"
+         description="To reset your password, enter your email."
+         backButtonLabel="Log in account"
+         backButtonHref="/auth/login">
          <Form {...form}>
             <form
                onSubmit={form.handleSubmit(onSubmit)}
@@ -66,33 +68,8 @@ export function LoginForm() {
                         <FormControl>
                            <Input
                               placeholder="john@example.com"
-                              disabled={isLoadingLogin}
+                              disabled={isLoadingReset}
                               type="email"
-                              {...field}
-                           />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
-               />
-               <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                     <FormItem>
-                        <div className="flex items-center justify-between">
-                           <FormLabel>Password</FormLabel>
-                           <Link
-                              href="/auth/reset-password"
-                              className="ml-auto inline-block text-sm underline">
-                              Forgot password?
-                           </Link>
-                        </div>
-                        <FormControl>
-                           <Input
-                              placeholder="******"
-                              disabled={isLoadingLogin}
-                              type="password"
                               {...field}
                            />
                         </FormControl>
@@ -107,8 +84,8 @@ export function LoginForm() {
                      theme={theme === "light" ? "light" : "dark"}
                   />
                </div>
-               <Button type="submit" disabled={isLoadingLogin}>
-                  Log in account
+               <Button type="submit" disabled={isLoadingReset}>
+                  Reset Password
                </Button>
             </form>
          </Form>

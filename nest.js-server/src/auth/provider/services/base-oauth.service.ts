@@ -52,16 +52,14 @@ export class BaseOAuthService {
 
       if (!tokensRequest.ok) {
          throw new BadRequestException(
-            `Failed to get user with ${this.options.profile_url}. Check your credentials.`
+            `Failed to get tokens from ${this.options.access_url}. Status: ${tokensRequest.status}`
          )
       }
 
       const tokens = await tokensRequest.json()
 
       if (!tokens.access_token) {
-         throw new BadRequestException(
-            `No tokens found with ${this.options.profile_url}. Check your credentials.`
-         )
+         throw new BadRequestException(`No access token received from provider`)
       }
 
       const userRequest = await fetch(this.options.profile_url, {
@@ -72,7 +70,7 @@ export class BaseOAuthService {
 
       if (!userRequest.ok) {
          throw new BadRequestException(
-            `Failed to get user with ${this.options.profile_url}. Check your credentials.`
+            `Failed to get user from ${this.options.profile_url}. Status: ${userRequest.status}. Check your credentials.`
          )
       }
 
@@ -85,6 +83,7 @@ export class BaseOAuthService {
          refresh_token: tokens.refresh_token,
          expires_at: tokens.expires_at || tokens.expires_in,
          provider: this.options.name,
+         providerAccountId: user.sub || user.id,
       }
    }
 

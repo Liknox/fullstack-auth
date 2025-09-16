@@ -104,42 +104,57 @@ export class AuthService {
       const providerService = this.providerService.findByService(provider)
       const profile = await providerService.findUserByCode(code)
 
-      const account = await this.prismaService.account.findFirst({
+      const account = await this.prismaService.account.findUnique({
          where: {
-            id: profile.id,
-            provider: profile.provider,
+            provider_providerAccountId: {
+               provider: profile.provider,
+               providerAccountId: profile.providerAccountId,
+            },
          },
+         include: { user: true },
       })
 
-      let user = account?.userId
-         ? await this.userService.findById(account.userId)
-         : null
+      if (account && account.user) {
+         return this.saveSession(req, account.user)
+      }
+
+      let user = await this.userService.findByEmail(profile.email)
 
       if (user) {
+         await this.prismaService.account.create({
+            data: {
+               userId: user.id,
+               type: "oauth",
+               provider: profile.provider,
+               providerAccountId: profile.providerAccountId,
+               accessToken: profile.access_token,
+               refreshToken: profile.refresh_token,
+               expiresAt: profile.expires_at,
+            },
+         })
          return this.saveSession(req, user)
       }
 
       user = await this.userService.create(
          profile.email,
          "",
-         profile.name,
-         profile.picture,
+         profile.name || "",
+         profile.picture || null,
          AuthMethod[profile.provider.toUpperCase()],
          true
       )
 
-      if (!account) {
-         await this.prismaService.account.create({
-            data: {
-               userId: user.id,
-               type: "oauth",
-               provider: profile.provider,
-               accessToken: profile.access_token,
-               refreshToken: profile.refresh_token,
-               expiresAt: profile.expires_at,
-            },
-         })
-      }
+      await this.prismaService.account.create({
+         data: {
+            userId: user.id,
+            type: "oauth",
+            provider: profile.provider,
+            providerAccountId: profile.providerAccountId,
+            accessToken: profile.access_token,
+            refreshToken: profile.refresh_token,
+            expiresAt: profile.expires_at,
+         },
+      })
 
       return this.saveSession(req, user)
    }

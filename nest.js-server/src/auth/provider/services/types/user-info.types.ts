@@ -7,4 +7,5 @@ export type TypeUserInfo = {
    refresh_token?: string
    expires_at?: number
    provider: string
+   providerAccountId: string
 }

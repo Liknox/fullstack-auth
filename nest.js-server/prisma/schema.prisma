@@ -75,6 +75,7 @@ enum UserRole {
 enum AuthMethod {
    CREDENTIALS
    GOOGLE
+   GITHUB
 }
 
 enum TokenType {

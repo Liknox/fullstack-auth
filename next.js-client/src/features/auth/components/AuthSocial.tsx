@@ -28,15 +28,15 @@ export function AutSocial() {
 
    return (
       <>
-         <div className="grid grid-cols-1 gap-6">
+         <div className="grid grid-cols-2 gap-4">
             <Button onClick={() => onClick("google")} variant="outline">
                <FaGoogle className="mr-2 size-4" />
                Google
             </Button>
-            {/* <Button onClick={() => onClick("github")} variant="outline">
+            <Button onClick={() => onClick("github")} variant="outline">
                <FaGithub className="mr-2 size-4" />
                Github
-            </Button> */}
+            </Button>
          </div>
          <div className="relative mb-2 space-y-4">
             <div className="absolute inset-0 flex items-center">

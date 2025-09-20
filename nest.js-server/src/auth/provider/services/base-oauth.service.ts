@@ -81,9 +81,9 @@ export class BaseOAuthService {
          ...userData,
          access_token: tokens.access_token,
          refresh_token: tokens.refresh_token,
-         expires_at: tokens.expires_at || tokens.expires_in,
+         expires_at: tokens.expires_at || tokens.expires_in || 3599,
          provider: this.options.name,
-         providerAccountId: user.sub || user.id,
+         providerAccountId: String(user.sub || user.id),
       }
    }
 

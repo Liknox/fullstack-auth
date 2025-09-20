@@ -4,7 +4,7 @@ import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import { TypeNewPasswordSchema } from "../schemas"
+import { type TypeNewPasswordSchema } from "../schemas"
 import { passwordRecoveryService } from "../services"
 
 export function useNewPasswordMutation() {

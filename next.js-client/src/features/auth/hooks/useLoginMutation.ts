@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
-import { Dispatch, SetStateAction } from "react"
+import { type Dispatch, type SetStateAction } from "react"
 import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import type { TypeLoginSchema } from "../schemas"
+import { type TypeLoginSchema } from "../schemas"
 import { authService } from "../services"
 
 export function useLoginMutation(

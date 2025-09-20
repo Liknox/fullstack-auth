@@ -3,7 +3,7 @@ import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import { TypeResetPasswordSchema } from "../schemas"
+import { type TypeResetPasswordSchema } from "../schemas"
 import { passwordRecoveryService } from "../services"
 
 export function useResetPasswordMutation() {

@@ -3,7 +3,7 @@ import { toast } from "sonner"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import { TypeSettingsSchema } from "../schemas"
+import { type TypeSettingsSchema } from "../schemas"
 import { userService } from "../services"
 
 export function useUpdateProfileMutation() {

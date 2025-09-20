@@ -1,7 +1,10 @@
 import { api } from "@/shared/api"
 
-import type { TypeNewPasswordSchema, TypeResetPasswordSchema } from "../schemas"
-import type { IUser } from "../types"
+import {
+   type TypeNewPasswordSchema,
+   type TypeResetPasswordSchema
+} from "../schemas"
+import { type IUser } from "../types"
 
 class PasswordRecoveryService {
    public async reset(body: TypeResetPasswordSchema, recaptcha?: string) {

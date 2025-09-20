@@ -1,5 +1,5 @@
 import { FetchError } from "./fetch-error"
-import type { IRequestOptions, TypeSearchParams } from "./fetch-types"
+import { type IRequestOptions, type TypeSearchParams } from "./fetch-types"
 
 export class FetchClient {
    private baseUrl: string

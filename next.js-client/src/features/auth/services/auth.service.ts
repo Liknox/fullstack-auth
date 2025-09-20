@@ -1,7 +1,7 @@
 import { api } from "@/shared/api"
 
-import type { TypeLoginSchema, TypeRegisterSchema } from "../schemas"
-import type { IUser, ProvidersType } from "../types"
+import { type TypeLoginSchema, type TypeRegisterSchema } from "../schemas"
+import { type IUser, type ProvidersType } from "../types"
 
 class AuthService {
    public async register(body: TypeRegisterSchema, recaptcha?: string) {

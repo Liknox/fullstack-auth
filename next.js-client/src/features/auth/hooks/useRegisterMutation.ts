@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation"
 
 import { toastMessageHandler } from "@/shared/utils"
 
-import type { TypeRegisterSchema } from "../schemas"
+import { type TypeRegisterSchema } from "../schemas"
 import { authService } from "../services"
 
 export function useRegisterMutation() {

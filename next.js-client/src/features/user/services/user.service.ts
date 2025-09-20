@@ -1,4 +1,4 @@
-import type { IUser } from "@/features/auth/types"
+import { type IUser } from "@/features/auth/types"
 
 import { api } from "@/shared/api"
 

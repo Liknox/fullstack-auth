@@ -8,9 +8,9 @@ services:
       env_file:
          - .env
       environment:
-         - POSTGRES_USER=${POSTGRES_USER}
-         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-         - POSTGRES_DB=${POSTGRES_DB}
+         - POSTGRES_USER=${POSTGRES_USER:-root}
+         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+         - POSTGRES_DB=${POSTGRES_DB:-full-authorization}
       ports:
          - "${POSTGRES_PORT:-5432}:5432"
       volumes:
@@ -27,8 +27,8 @@ services:
       ports:
          - "${REDIS_PORT:-6379}:6379"
       environment:
-         - REDIS_PASSWORD=${REDIS_PASSWORD}
-      command: redis-server --requirepass ${REDIS_PASSWORD}
+         - REDIS_PASSWORD=${REDIS_PASSWORD:-password}
+      command: redis-server --requirepass ${REDIS_PASSWORD:-password}
       volumes:
          - redis_data:/data
       networks:
@@ -42,6 +42,8 @@ services:
       restart: always
       env_file:
          - .env
+      environment:
+         - POSTGRES_URI=${POSTGRES_URI:-postgresql://root:password@db:5432/full-authorization}
       ports:
          - "${APPLICATION_PORT:-4000}:4000"
       depends_on:

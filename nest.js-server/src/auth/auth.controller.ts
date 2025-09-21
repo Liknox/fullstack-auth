@@ -58,7 +58,7 @@ export class AuthController {
       await this.authService.extractProfileFromCode(req, provider, code)
 
       return res.redirect(
-         `${this.configService.getOrThrow<string>("FRONTEND_URL")}/dashboard/settings`
+         `${this.configService.getOrThrow<string>("FRONTEND_URL", "http://localhost:3000")}/dashboard/settings`
       )
    }
 

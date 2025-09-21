@@ -7,15 +7,15 @@ export const getMailerConfig = async (
    configService: ConfigService
 ): Promise<MailerOptions> => ({
    transport: {
-      host: configService.getOrThrow<string>("MAIL_HOST"),
-      port: configService.getOrThrow<number>("MAIL_PORT"),
+      host: configService.getOrThrow<string>("MAIL_HOST", "smtp.gmail.com"),
+      port: configService.getOrThrow<number>("MAIL_PORT", 587),
       secure: !isDev(configService),
       auth: {
-         user: configService.getOrThrow<string>("MAIL_LOGIN"),
-         pass: configService.getOrThrow<string>("MAIL_PASSWORD"),
+         user: configService.getOrThrow<string>("MAIL_LOGIN", "test@email.com"),
+         pass: configService.getOrThrow<string>("MAIL_PASSWORD", "password"),
       },
    },
    defaults: {
-      from: `"FullStack Auth" ${configService.getOrThrow<string>("MAIL_LOGIN")}`,
+      from: `"FullStack Auth" ${configService.getOrThrow<string>("MAIL_LOGIN", "test@email.com")}`,
    },
 })

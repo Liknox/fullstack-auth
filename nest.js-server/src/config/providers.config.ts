@@ -7,19 +7,24 @@ import { GoogleProvider } from "@/auth/provider/services/google.provider"
 export const getProvidersConfig = async (
    configService: ConfigService
 ): Promise<TypeOptions> => ({
-   baseUrl: configService.getOrThrow<string>("APPLICATION_URL"),
+   baseUrl: configService.getOrThrow<string>(
+      "APPLICATION_URL",
+      "http://localhost:4000"
+   ),
    services: [
       new GoogleProvider({
-         client_id: configService.getOrThrow<string>("GOOGLE_CLIENT_ID"),
+         client_id: configService.getOrThrow<string>("GOOGLE_CLIENT_ID", ""),
          client_secret: configService.getOrThrow<string>(
-            "GOOGLE_CLIENT_SECRET"
+            "GOOGLE_CLIENT_SECRET",
+            ""
          ),
          scopes: ["email", "profile"],
       }),
       new GithubProvider({
-         client_id: configService.getOrThrow<string>("GITHUB_CLIENT_ID"),
+         client_id: configService.getOrThrow<string>("GITHUB_CLIENT_ID", ""),
          client_secret: configService.getOrThrow<string>(
-            "GITHUB_CLIENT_SECRET"
+            "GITHUB_CLIENT_SECRET",
+            ""
          ),
          scopes: ["email", "profile"],
       }),

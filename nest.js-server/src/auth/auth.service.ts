@@ -170,7 +170,7 @@ export class AuthService {
                )
             }
             res.clearCookie(
-               this.configService.getOrThrow<string>("SESSION_NAME")
+               this.configService.getOrThrow<string>("SESSION_NAME", "session")
             )
             resolve()
          })

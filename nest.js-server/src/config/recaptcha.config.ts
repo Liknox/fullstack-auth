@@ -9,7 +9,8 @@ export const recaptchaConfig = {
       configService: ConfigService
    ): GoogleRecaptchaModuleOptions => ({
       secretKey: configService.getOrThrow<string>(
-         "GOOGLE_RECAPTCHA_SECRET_KEY"
+         "GOOGLE_RECAPTCHA_SECRET_KEY",
+         "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" // default value provided by google for testing purposes
       ),
       response: req => req.headers.recaptcha,
       skipIf: isDev(configService),

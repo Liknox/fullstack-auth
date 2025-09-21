@@ -128,9 +128,12 @@ export function LoginForm() {
                )}
                <div className="flex justify-center">
                   <ReCAPTCHA
-                     sitekey={process.env.GOOGLE_RECAPTCHA_SITE_KEY as string}
+                     sitekey={
+                        (process.env.GOOGLE_RECAPTCHA_SITE_KEY as string) || "blank"
+                     }
                      onChange={setRecaptchaValue}
                      theme={theme === "light" ? "light" : "dark"}
+                     hidden={!process.env.GOOGLE_RECAPTCHA_SITE_KEY}
                   />
                </div>
                <Button type="submit" disabled={isLoadingLogin}>

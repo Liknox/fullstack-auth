@@ -3,6 +3,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { FaGithub, FaGoogle } from "react-icons/fa"
+import { toast } from "sonner"
 
 import { Button } from "@/shared/components/ui"
 
@@ -19,6 +20,18 @@ export function AutSocial() {
    })
 
    const onClick = async (provider: ProvidersType) => {
+      if (provider === "github") {
+         if (process.env.GITHUB_CLIENT_ID === undefined) {
+            toast.error("GITHUB_CLIENT_ID env wasn't provided!")
+            return
+         }
+      } else if (provider === "google") {
+         if (process.env.GOOGLE_CLIENT_ID === undefined) {
+            toast.error("GOOGLE_CLIENT_ID env wasn't provided!")
+            return
+         }
+      }
+
       const response = await mutateAsync(provider)
 
       if (response) {

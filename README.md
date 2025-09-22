@@ -1,8 +1,6 @@
 # Authentication Demo Application
 
-This is a full-stack authentication demo application showcasing secure user authentication and authorization features.
-It includes a backend built with Nest.js and a frontend built with Next.js, incorporating modern security practices such
-as OAuth2, password recovery, two-factor authentication (2FA), Google reCAPTCHA, and email verification.
+### Fullstack Authorization using Nest.js (Node Framework), Postgresql (DB), Redis (Sessions), Prisma (ORM), Docker Compose, Oauth2 (Google | Github), 2FA (Email Verification), Google Captcha. Frontend - Next.js, Tailwind, ShadCN, Zod, React-hook-form.
 
 ## Features
 

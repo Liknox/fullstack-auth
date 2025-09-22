@@ -1,14 +1,12 @@
 import { BaseOAuthService } from "./base-oauth.service"
+import { GithubLinks } from "./config"
 import { TypeProviderOptions } from "./types/provider-options.types"
 import { TypeUserInfo } from "./types/user-info.types"
 
 export class GithubProvider extends BaseOAuthService {
    public constructor(options: TypeProviderOptions) {
       super({
-         name: "github",
-         authorize_url: "https://github.com/login/oauth/authorize",
-         access_url: "https://github.com/login/oauth/access_token",
-         profile_url: "https://api.github.com/user",
+         ...GithubLinks,
          scopes: options.scopes || ["user"], // Default to 'user' scope for profile and email
          client_id: options.client_id,
          client_secret: options.client_secret,

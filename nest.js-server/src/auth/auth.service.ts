@@ -34,7 +34,7 @@ export class AuthService {
 
       if (isExists) {
          throw new ConflictException(
-            "Registration failed. A user with this email already exists. Please use another email or log in."
+            "Registration failed. User with this email already exists. Please use another email or log in."
          )
       }
 
@@ -73,7 +73,7 @@ export class AuthService {
       if (!user.isVerified) {
          await this.emailConfirmationService.sendVerificationToken(user.email)
          throw new UnauthorizedException(
-            "Your email isn't verified. Please, check your email and confirm."
+            "Your email isn't verified. Check your email."
          )
       }
 
@@ -83,7 +83,7 @@ export class AuthService {
 
             return {
                message:
-                  "Check your email. Two factor authentication code is required!",
+                  "2FA code is required! Check your email.",
             }
          }
 

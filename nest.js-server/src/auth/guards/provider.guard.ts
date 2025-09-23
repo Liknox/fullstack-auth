@@ -21,7 +21,7 @@ export class AuthProviderGuard implements CanActivate {
 
       if (!providerInstance) {
          throw new NotFoundException(
-            `Provider "${provider}" not found. Please check your credentials.`
+            `Provider "${provider}" not found. Check your credentials.`
          )
       }
 

@@ -56,7 +56,7 @@ export class PasswordRecoveryService {
 
       if (hasExpired) {
          throw new BadRequestException(
-            "Token has expired. Please request a new one."
+            "Token has expired. Request a new one."
          )
       }
 

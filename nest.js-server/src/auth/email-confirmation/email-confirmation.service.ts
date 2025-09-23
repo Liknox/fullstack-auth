@@ -42,7 +42,7 @@ export class EmailConfirmationService {
 
       if (hasExpired) {
          throw new NotFoundException(
-            "Token has expired. Please request a new one."
+            "Token has expired. Request a new one."
          )
       }
 

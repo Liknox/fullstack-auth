@@ -31,7 +31,7 @@ export class TwoFactorAuthService {
 
       if (existingToken.token !== code) {
          throw new BadRequestException(
-            "Wrong 2FA token. Please check it out and try again."
+            "Wrong 2FA token. Check it out and try again."
          )
       }
 
@@ -39,7 +39,7 @@ export class TwoFactorAuthService {
 
       if (hasExpired) {
          throw new NotFoundException(
-            "2FA Token has expired. Please request a new one."
+            "2FA Token has expired. Request a new one."
          )
       }
 

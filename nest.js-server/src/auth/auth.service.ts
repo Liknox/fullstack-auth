@@ -82,8 +82,7 @@ export class AuthService {
             await this.twoFactorAuthService.sendTwoFactorToken(user.email)
 
             return {
-               message:
-                  "2FA code is required! Check your email.",
+               message: "2FA code is required! Check your email.",
             }
          }
 

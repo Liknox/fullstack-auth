@@ -41,9 +41,7 @@ export class EmailConfirmationService {
       const hasExpired = new Date(existingToken.expiresIn) < new Date()
 
       if (hasExpired) {
-         throw new NotFoundException(
-            "Token has expired. Request a new one."
-         )
+         throw new NotFoundException("Token has expired. Request a new one.")
       }
 
       const existingUser = await this.userService.findByEmail(

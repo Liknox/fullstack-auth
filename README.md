@@ -1,4 +1,4 @@
-<h1 align="center">Technologies Stack</h1>
+<h1 align="center">Technology Stack</h1>
 <div align="center">
 <img title="nodejs" alt="nodejs" height=48 src="https://tinyurl.com/y6suenee"/>
 <img title="nestjs" alt="nestjs" height=48 src="https://tinyurl.com/4nwu8a4e"/>

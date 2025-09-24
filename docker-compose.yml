@@ -1,7 +1,6 @@
-version: "3.7"
-
 services:
    db:
+      profiles: ["db", "all"]
       container_name: postgres
       image: postgres:15.2
       restart: always
@@ -16,11 +15,12 @@ services:
       volumes:
          - postgres_data:/var/lib/postgresql/data
       networks:
-         - backend
+         - db
 
    redis:
+      profiles: ["db", "all"]
       container_name: redis
-      image: redis:latest
+      image: redis:8.2
       restart: always
       env_file:
          - .env
@@ -32,10 +32,11 @@ services:
       volumes:
          - redis_data:/data
       networks:
-         - backend
+         - db
 
    backend:
-      container_name: nestjs_app
+      profiles: ["app", "all"]
+      container_name: backend_app
       build:
          context: ./nest.js-server
          dockerfile: Dockerfile
@@ -46,19 +47,21 @@ services:
          - POSTGRES_URI=${POSTGRES_URI:-postgresql://root:password@db:5432/full-authorization}
       ports:
          - "${APPLICATION_PORT:-4000}:4000"
-      depends_on:
-         - db
-         - redis
       volumes:
          - ./nest.js-server:/usr/src/backend
          - /usr/src/backend/node_modules
+      depends_on:
+         - db
+         - redis
       networks:
-         - backend
+         - db
+         - app
       command: >
          sh -c "npx prisma db push --accept-data-loss && npm run start:dev"
 
    frontend:
-      container_name: nextjs_app
+      profiles: ["app", "all"]
+      container_name: frontend_app
       build:
          context: ./next.js-client
          dockerfile: Dockerfile
@@ -71,14 +74,16 @@ services:
          - ./next.js-client:/usr/src/next.js-client
          - /usr/src/next.js-client/node_modules
          - /usr/src/next.js-client/.next
-      networks:
-         - backend
       depends_on:
          - backend
+      networks:
+         - app
 
 volumes:
    postgres_data:
    redis_data:
 
 networks:
-   backend:
+   db:
+      internal: true
+   app:

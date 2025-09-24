@@ -8,15 +8,58 @@ import "@/shared/styles/globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-   title: {
-      absolute: "Fullstack Auth",
-      template: "%s | Authorization"
-   },
+   title: { absolute: "Fullstack Auth", template: "%s | Authorization" },
    description:
-      "Fullstack Authorization using Node, Nest.js, Postgresql (db), Redis (sessions), Prisma (orm), Docker (compose), Oauth2 (google), 2FA (email confirmation), captcha (cloudflare). Frontend - Next.js (ssr), Tailwind (ui), Radix-ui, Zod (validation), React-hook-form.",
-   icons: {
-      icon: "/favicon.ico"
-   }
+      "Fullstack Authorization using Nest.js (Node Framework), Postgresql (DB), Redis (Sessions), Prisma (ORM), Docker Compose, Oauth2 (Google | Github), 2FA (Email Verification), Google Captcha. Frontend - Next.js, Tailwind, ShadCN, Zod, React-hook-form.",
+   icons: { icon: "/favicon.ico", shortcut: "/favicon.ico" },
+   openGraph: {
+      title: "Fullstack Auth",
+      description:
+         "Secure fullstack authorization with Next.js, Nest.js, OAuth2, 2FA, and more.",
+      url: "https://github.com/Liknox/fullstack-auth",
+      siteName: "Fullstack Auth",
+      images: [
+         {
+            url: "/favicon.ico", // Add a 1200x630px image in your public folder
+            width: 128,
+            height: 128,
+            alt: "Fullstack Auth Preview"
+         }
+      ],
+      locale: "en_US",
+      type: "website"
+   },
+   twitter: {
+      card: "summary_large_image",
+      title: "Fullstack Auth",
+      description: "Secure authorization with Next.js and Nest.js.",
+      images: ["/favicon.ico"]
+   },
+   keywords: [
+      "fullstack authorization",
+      "password-recovery",
+      "Next.js",
+      "Nest.js",
+      "OAuth2",
+      "Typescript",
+      "2FA",
+      "PostgreSQL",
+      "Redis",
+      "Prisma",
+      "Docker",
+      "Tailwind CSS",
+      "ShadCN",
+      "Zod",
+      "React Hook Form"
+   ],
+   robots: { index: true, follow: true },
+   viewport: {
+      width: "device-width",
+      initialScale: 1,
+      maximumScale: 1
+   },
+   manifest: "/manifest.json",
+   themeColor: "#ffffff"
 }
 
 export default function RootLayout({

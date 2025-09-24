@@ -1,4 +1,26 @@
-# Authentication Demo Application
+<h1 align="center">Technologies Stack</h1>
+<div align="center">
+<img title="nodejs" alt="nodejs" height=48 src="https://tinyurl.com/y6suenee"/>
+<img title="nestjs" alt="nestjs" height=48 src="https://tinyurl.com/4nwu8a4e"/>
+<img title="typescript" alt="typescript" height=48 src="https://tinyurl.com/kctcy2an"/>
+<img title="prisma-orm" alt="prisma-orm" height=48 src="https://tinyurl.com/4nwnb4e9"/>
+<img title="postgresql" alt="postgresql" height=48 src="https://tinyurl.com/4cj52e8y"/>
+<img title="redis" alt="redis" height=48 src="https://tinyurl.com/4x4663ef"/>
+<img title="docker" alt="docker" height=48 src="https://tinyurl.com/4p53a2nm"/>
+<img title="oauth2" alt="oauth2" height=48 src="https://tinyurl.com/33u9vxje"/>
+<img title="nextjs" alt="nextjs" height=48 src="https://tinyurl.com/378x8jjt"/>
+<img title="shadcn" alt="shadcn" height=48 src="https://tinyurl.com/5djybs8j"/>
+<img title="tailwindcss" alt="tailwindcss" height=48 src="https://tinyurl.com/2v6fr5ve"/>
+<img title="prettier" alt="prettier" height=48 src="https://prettier.io/icon.png"/>
+<img title="zod" alt="zod" height=48 src="https://tinyurl.com/yxkyb5ev"/>
+<img title="react-hook-forms" alt="react-hook-forms" height=48 src="https://tinyurl.com/579xapsu"/>
+<img title="feature-sliced-design" alt="feature-sliced-design" height=48 src="https://tinyurl.com/yd6thayc"/>
+</div>
+
+<br />
+<br />
+
+<h1 align="center">Fullstack Authorization</h1>
 
 ### Fullstack Authorization using Nest.js (Node Framework), Postgresql (DB), Redis (Sessions), Prisma (ORM), Docker Compose, Oauth2 (Google | Github), 2FA (Email Verification), Google Captcha. Frontend - Next.js, Tailwind, ShadCN, Zod, React-hook-form.
 
@@ -143,26 +165,3 @@ Access the **Application**:
 **Email Verification**: Ensures only verified users access protected routes.
 
 **Docker**: Isolates services for consistent and secure deployment.
-
-<br />
-<br />
-<br />
-
-<h1 align="center">Technologies Stack</h1>
-<div align="center">
-<img title="nodejs" alt="nodejs" height=48 src="https://tinyurl.com/y6suenee"/>
-<img title="nestjs" alt="nestjs" height=48 src="https://tinyurl.com/4nwu8a4e"/>
-<img title="typescript" alt="typescript" height=48 src="https://tinyurl.com/kctcy2an"/>
-<img title="prisma-orm" alt="prisma-orm" height=48 src="https://tinyurl.com/4nwnb4e9"/>
-<img title="postgresql" alt="postgresql" height=48 src="https://tinyurl.com/4cj52e8y"/>
-<img title="redis" alt="redis" height=48 src="https://tinyurl.com/4x4663ef"/>
-<img title="docker" alt="docker" height=48 src="https://tinyurl.com/4p53a2nm"/>
-<img title="oauth2" alt="oauth2" height=48 src="https://tinyurl.com/33u9vxje"/>
-<img title="nextjs" alt="nextjs" height=48 src="https://tinyurl.com/378x8jjt"/>
-<img title="shadcn" alt="shadcn" height=48 src="https://tinyurl.com/5djybs8j"/>
-<img title="tailwindcss" alt="tailwindcss" height=48 src="https://tinyurl.com/2v6fr5ve"/>
-<img title="prettier" alt="prettier" height=48 src="https://prettier.io/icon.png"/>
-<img title="zod" alt="zod" height=48 src="https://tinyurl.com/yxkyb5ev"/>
-<img title="react-hook-forms" alt="react-hook-forms" height=48 src="https://tinyurl.com/579xapsu"/>
-<img title="feature-sliced-design" alt="feature-sliced-design" height=48 src="https://tinyurl.com/yd6thayc"/>
-</div>

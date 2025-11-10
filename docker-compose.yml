@@ -9,7 +9,7 @@ services:
       environment:
          - POSTGRES_USER=${POSTGRES_USER:-root}
          - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
-         - POSTGRES_DB=${POSTGRES_DB:-full-authorization}
+         - POSTGRES_DB=${POSTGRES_DB:-full_authorization}
       ports:
          - "${POSTGRES_PORT:-5432}:5432"
       volumes:
@@ -44,7 +44,7 @@ services:
       env_file:
          - .env
       environment:
-         - POSTGRES_URI=${POSTGRES_URI:-postgresql://root:password@db:5432/full-authorization}
+         - POSTGRES_URI=${POSTGRES_URI:-postgresql://root:password@db:5432/full_authorization}
       ports:
          - "${APPLICATION_PORT:-4000}:4000"
       volumes:

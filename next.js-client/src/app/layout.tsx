@@ -1,4 +1,4 @@
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 
 import { ToggleTheme } from "@/shared/components/ui"
@@ -7,11 +7,14 @@ import "@/shared/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const metadataBase = new URL((process.env.APPLICATION_URL as string) || "http://localhost:3000")
+
 export const metadata: Metadata = {
    title: { absolute: "Fullstack Auth", template: "%s | Authorization" },
    description:
       "Fullstack Authorization using Nest.js (Node Framework), Postgresql (DB), Redis (Sessions), Prisma (ORM), Docker Compose, Oauth2 (Google | Github), 2FA (Email Verification), Google Captcha. Frontend - Next.js, Tailwind, ShadCN, Zod, React-hook-form.",
    icons: { icon: "/favicon.ico", shortcut: "/favicon.ico" },
+   metadataBase: metadataBase,
    openGraph: {
       title: "Fullstack Auth",
       description:
@@ -53,14 +56,19 @@ export const metadata: Metadata = {
       "React Hook Form"
    ],
    robots: { index: true, follow: true },
-   viewport: {
-      width: "device-width",
-      initialScale: 1,
-      maximumScale: 1
-   },
    manifest: "/manifest.json",
-   themeColor: "#ffffff"
 }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#ffffff", // You can also use an array for light/dark mode, e.g.:
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  //   { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  // ],
+};
 
 export default function RootLayout({
    children

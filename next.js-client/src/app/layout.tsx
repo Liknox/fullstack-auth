@@ -7,7 +7,9 @@ import "@/shared/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadataBase = new URL((process.env.APPLICATION_URL as string) || "http://localhost:3000")
+export const metadataBase = new URL(
+   (process.env.APPLICATION_URL as string) || "http://localhost:3000"
+)
 
 export const metadata: Metadata = {
    title: { absolute: "Fullstack Auth", template: "%s | Authorization" },
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
       siteName: "Fullstack Auth",
       images: [
          {
-            url: "/favicon.ico", // Add a 1200x630px image in your public folder
+            url: "/favicon.ico",
             width: 128,
             height: 128,
             alt: "Fullstack Auth Preview"
@@ -56,19 +58,15 @@ export const metadata: Metadata = {
       "React Hook Form"
    ],
    robots: { index: true, follow: true },
-   manifest: "/manifest.json",
+   manifest: "/manifest.json"
 }
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  themeColor: "#ffffff", // You can also use an array for light/dark mode, e.g.:
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-  //   { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  // ],
-};
+   width: "device-width",
+   initialScale: 1,
+   maximumScale: 1,
+   themeColor: "#ffffff"
+}
 
 export default function RootLayout({
    children
